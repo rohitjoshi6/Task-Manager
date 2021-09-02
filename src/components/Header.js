@@ -1,13 +1,21 @@
-const Header = (props) => {
+import Button from "./Button"
+
+const Header = ({title}) => {
     return (
-        <header>
-            <h1>{props.title}</h1>
+        <header className="header">
+            <h1>{title}</h1>
+            <Button color='green' text='Add'/>
         </header>
     )
 }
 
 Header.defaultProps={
-    title:"LoL",
+    title:"Task Tracker",
 }
+
+//const headingstyle={
+//    color:'red',
+//    backGround:'black',
+//}
 
 export default Header
