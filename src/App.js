@@ -1,35 +1,45 @@
-import { useState } from "react"
-import Header from "./components/Header";
-import Tasks from "./components/Tasks";
+import React from 'react'
+import { useState } from 'react/cjs/react.development'
 
-const App = ()=>{
-  const [tasks, setTasks]=useState([
-    {
-        id:1,
-        text: 'Doctor Appointment',
-        day: 'Sept 7th at 2:30pm',
-        reminder:true,
-    },
-    {
-        id:2,
-        text: 'GDSC Meeting',
-        day: 'Sept 8th at 1:30pm',
-        reminder:true,
-    },
-    {
-        id:3,
-        text: 'Family Dinner',
-        day: 'Sept 9th at 8:30pm',
-        reminder:false,
-    }
-])
+const App = () => {
+
+  const [inputList, setInputList]=useState("trial1");
+  const [Items, setItems]=useState([]);
+  
+  const itemEvent=(event)=>{
+    setInputList(event.target.value);
+  };
+
+  const listOfItems=()=>{
+    setItems((oldItems)=>{
+      return [...oldItems, inputList]
+    })
+  };
 
   return (
-    <div className="container">
-      <Header />
-      <Tasks tasks={tasks}/>
-    </div>
-  );
+    <>
+      <div className="main_div">
+        <div className="center_div">
+          <br />
+          <h1> Task Manager</h1>
+          <br />
+          <input type="text" placeholder="Add items" onChange={itemEvent}/>
+          <button onClick={listOfItems}> + </button>
+
+          <ol>
+            {/* <li>{inputList}</li> */}
+
+            {Items.map((itemvalue)=>{
+              return  <li>{itemvalue}</li> 
+            })}
+          </ol>
+
+        </div>
+      </div>      
+
+    </>
+  )
 }
 
-export default App;
+export default App
+
